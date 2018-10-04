@@ -3,40 +3,64 @@ from tkinter import ttk
 import os
 import shutil, errno
 
+#ToDO: FIX THE PROBLEM THAT KEEPS HAPPENING
+
 def premove():
 	value = variable.get()
 	print(value)
 	if value == "SDVX 1 ~ Booth":
-		source = r"/~SKINS/1 ~ Booth"
+		source = r"~SKINS\Booth"
 	elif value == "SDVX 2 ~ Infinite Infection":
-		source = r"/~SKINS/2 ~ Infinite Infection"
+		source = r"~SKINS\Infinite Infection"
 	elif value == "SDVX 3 ~ Gravity Wars":
-		source = r"/~SKINS/3 ~ Gravity Wars"
+		source = r"~SKINS\Gravity Wars"
 	elif value == "SDVX 4 ~ Heavenly Haven":
-		source = r"/~SKINS/4 ~ Heavenly Haven"
+		source = r"~SKINS\Heavenly Haven"
 	print(source + " was selected properly")
 	move(source)
 
 #moves the files
 def move(source):
 	print(source + " has started moving")
-	#if file destination exists, murder it
+
 	print("#########################")
+
+	#kshoot folder
 	dirname = os.path.dirname(__file__)
-	print(dirname)
-	imgs = os.path.join(r"\imgs", dirname)
-	print(imgs)
-	cache = os.path.join(r"\cache", dirname)
-	print(cache)
-	se = os.path.join(r"\se", dirname)
-	print(se)
+	print(dirname + " is dirname")
+
+	#skin folder
+	source = os.path.join(dirname, source)
+	print(source + " is source")
+
+	#images folder
+	imgs = os.path.join(dirname, "imgs")
+	print(imgs + " is imgs")
+
+	#cache folder
+	cache = os.path.join(dirname, "cache")
+	print(cache + " is cache")
+
+	#se folder
+	se = os.path.join(dirname, "se")
+	print(se + " is se")
 	print("#########################")
-	shutil.rmtree(imgs)
-	shutil.rmtree(cache)
-	shutil.rmtree(se)
+
+    #kill images
+	if(os.path.exists(imgs)):
+		shutil.rmtree(imgs)
+
+	#kill cache
+	if(os.path.exists(cache)):
+		shutil.rmtree(cache)
+
+    #kill sound effects
+	if(os.path.exists(se)):
+		shutil.rmtree(se)
+	print("Folders were killed properly")
 	#replace file destination
 	try:
-		shutil.copytree(source, r"C:\Users\minno\Desktop\kshootBACKUP", symlinks=False, ignore=None, copy_function=shutil.copy2, ignore_dangling_symlinks=False)
+		shutil.copytree(source, dirname, symlinks=False, ignore=None, copy_function=shutil.copy2, ignore_dangling_symlinks=False)
 	except OSError as exc:
 		if exc.errno == errno.ENOTDIR:
 			shutil.copy(src, dst)
