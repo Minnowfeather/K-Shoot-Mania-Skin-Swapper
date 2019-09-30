@@ -1,5 +1,7 @@
-How to use:
-1. Compile into exe
-2. Put exe into kshoot mania folder
-3. Run
+Run from script:
+Move script into kshoot folder
+Type 'python skinswapper.py' into your console in the script's location
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run from .exe:
+Move .exe into kshoot folder
+Double click to run
